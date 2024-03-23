@@ -1,0 +1,15 @@
+[package]
+name = "paillier-encryption-backend"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.5.3", features = ["derive"] }
+serde = "1.0.197"
+serde_json = "1.0.114"
+
+[dependencies.paillier]
+package = "kzen-paillier"
+kzen-paillier = "0.4.3"

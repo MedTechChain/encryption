@@ -411,6 +411,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "encrypt"
+version = "0.0.1"
+dependencies = [
+ "clap",
+ "kzen-paillier",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "fake-simd"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -641,16 +651,6 @@ dependencies = [
  "ecdsa",
  "elliptic-curve",
  "sha2 0.10.8",
-]
-
-[[package]]
-name = "paillier-encryption"
-version = "0.0.1"
-dependencies = [
- "clap",
- "kzen-paillier",
- "serde",
- "serde_json",
 ]
 
 [[package]]

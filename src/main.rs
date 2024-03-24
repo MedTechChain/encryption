@@ -15,7 +15,10 @@ struct Cli {
 #[derive(Subcommand, Debug)]
 enum Commands {
     /// Generates a new keypair and prints them
-    Keygen,
+    Keygen {
+        #[arg(short, long)]
+        bit_length: usize,
+    },
     /// Encrypts a given plaintext with the provided encryption key
     Encrypt {
         /// Plaintext to encrypt
@@ -40,8 +43,8 @@ fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
-        Commands::Keygen => {
-            let (ek, dk) = generate_keys();
+        Commands::Keygen { bit_length } => {
+            let (ek, dk) = generate_keys(*bit_length);
             let response = json!({
                 "encryptionKey": serde_json::to_string(&ek).expect("Failed to serialize EncryptionKey"),
                 "decryptionKey": serde_json::to_string(&dk).expect("Failed to serialize DecryptionKey")
@@ -71,8 +74,8 @@ fn main() {
     }
 }
 
-fn generate_keys() -> (EncryptionKey, DecryptionKey) {
-    let (ek, dk) = Paillier::keypair().keys();
+fn generate_keys(bit_length: usize) -> (EncryptionKey, DecryptionKey) {
+    let (ek, dk) = Paillier::keypair_with_modulus_size(bit_length).keys();
 
     (ek, dk)
 }

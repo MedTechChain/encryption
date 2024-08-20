@@ -416,6 +416,7 @@ version = "0.0.1"
 dependencies = [
  "clap",
  "kzen-paillier",
+ "num-traits",
  "serde",
  "serde_json",
 ]
